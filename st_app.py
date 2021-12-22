@@ -84,6 +84,7 @@ def bpp_pulp(selected_order: str):
 
     #set constraint 2: number of itens in bin must not exceed its capacity, for every bin
     binCapacity = 5.7
+    binVolume = 9.0
     for j in range(m):
         bpp += lpSum([x[(I[i], j)]*wi[I[i]] for i in range(n)]) <= binCapacity*y[j]
 
@@ -99,7 +100,7 @@ def bpp_pulp(selected_order: str):
 
     #bins used 
     st.sidebar.write("Caixas usadas: " + str(sum(([y[j].value() for j in range(m)]))))
-    st.sidebar.write("Volume ocupado pelas caixas: %f"  %((sum(([y[j].value() for j in range(m)])))*binCapacity))
+    st.sidebar.write("Volume ocupado pelas caixas: %f"  %((sum(([y[j].value() for j in range(m)])))*binVolume))
 
     bins = {}
     vol = {}
